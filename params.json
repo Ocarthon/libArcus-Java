@@ -1,0 +1,6 @@
+{
+  "name": "libArcus-Java",
+  "tagline": "",
+  "body": "libArcus is a lightweight, easy to use library to send and receive messages between two programs based on the [Protocol Buffers](https://developers.google.com/protocol-buffers/) library by Google. It was originally developed by Ultimaker and is primarily used to communicate with their CuraEngine. This is a port of the [original library](https://github.com/Ultimaker/libArcus/) to the programming language Java. The API is almost identical to make working with both libraries more easy.\r\n\r\nUsage\r\n-----\r\n```java\r\n// Create a new instance\r\nArcusSocket socket = new ArcusSocket();\r\n\r\n// Add a listener\r\nsocket.addListener(...);\r\n\r\n// Register a message type\r\nsocket.registerMessageType(MyType.getDefaultInstanceForType());\r\n\r\n// Start listening on the specified port\r\nsocket.listen(...);\r\n\r\n// Send a messages\r\nsocket.sendMessage(...);\r\n\r\n// Retrieve a received message\r\nMessage message = socket.takeNextMessage();\r\n\r\n// Check of message type\r\nif (message != null && message instanceof MyType) {\r\n    doStuff((MyType) message);\r\n}\r\n\r\n// Close the connection\r\nsocket.close();\r\n```",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
