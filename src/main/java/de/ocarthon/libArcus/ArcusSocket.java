@@ -45,8 +45,8 @@ import java.util.Queue;
  * <h1>Protocol</h1> The protocol used consists of four parts: <ul> <li><b>Header</b>:
  * {@code 0x28BAD0100} (32 bits) containing the signature ({@code 0x2BAD}), major protocol
  * version ({@code 0x01}) and minor protocol version ({@code 0x00}).</li> <li><b>Size</b>:
- * 32 bits containing the size of the serialized protobuf message</li> <li><b>Type</b>: 3
- * 2 bits containing the
+ * 32 bits containing the size of the serialized protobuf message</li> <li><b>Type</b>: 32
+ * bits containing the
  * <a target="_blank" href="https://tools.ietf.org/html/draft-eastlake-fnv-11">FNV-1a</a>
  * hash of the full protobuf message typename. This typename consists of the protobuf
  * package (defined in the protobuf file) and the name of the message concatenated
@@ -83,8 +83,8 @@ import java.util.Queue;
  * internal Queue. The separate Thread will check for messages in the Queue and send them
  * to the other side. After all messages are sent it tries to read incoming messages. If a
  * valid message has been received and successfully parsed, all registered
- * {@link SocketListener}s will getnotified and the message gets added to the internal
- * Queue. Messages can be chronically obtainedby successive calls to
+ * {@link SocketListener}s will get notified and the message gets added to the internal
+ * Queue. Messages can be chronically obtained by successive calls to
  * {@link #takeNextMessage()}.
  * <p>
  * <h1>Possible socket states</h1> In the life-cycle of an ArcusSocket, it can go through
@@ -93,7 +93,7 @@ import java.util.Queue;
  * <b>Connecting</b>: The socket has been started with a call to
  * {@link #connect(String, int)} and is not connecting to the given address
  * </li> <li><b>Opening</b>: The socket has been started with a call to
- * {@link #listen(int)} and is starting a internal {@link ServerSocket}</li> <li>
+ * {@link #listen(int)} and is starting an internal {@link ServerSocket}</li> <li>
  * <b>Listening</b>: The internal ServerSocket is waiting for a client to connect
  * </li> <li><b>Connected</b>: The socket is connected and messages can be sent and
  * received</li> <li><b>Closing</b>: The socket is closing the connection. Before actually
@@ -103,7 +103,7 @@ import java.util.Queue;
  * down</li> </ul>
  * <p>
  * <h1>Errors</h1> If an error occurs, all registered listeners get notified. In case of a
- * fatal error, the socket will be forcefully closed. Every error contains a
+ * fatal error, the socket will be forcefully closed. Every error contains an
  * {@link Error.ErrorCode ErrorCode} and a message describing what happened.
  * <p>
  * <h1>Reusing the socket</h1> If the socket has been closed or was forcefully closed and
@@ -296,7 +296,7 @@ public class ArcusSocket {
      * {@link SocketState#Opening Opening} state.
      * <p>
      * <p>If the specified port is 0, the port number is automatically allocated,
-     * typically from an ephermeral port range. This port number can then be retrieved by
+     * typically from an ephemeral port range. This port number can then be retrieved by
      * calling {@link #getPort}.
      *
      * @param port port to listen on. If 0, the port is automatically allocated.
@@ -435,7 +435,7 @@ public class ArcusSocket {
     }
 
     /**
-     * Returns the current state the socket is in
+     * Returns the current state the socket is in.
      *
      * @return current state of the socket
      * @see ArcusSocket
@@ -446,7 +446,7 @@ public class ArcusSocket {
 
     /**
      * This will return the ports specified by calls to {@link #listen(int)} or
-     * {@link #connect(String, int)}. If none ob them have been called, {@code 0} will be
+     * {@link #connect(String, int)}. If none of them have been called, {@code 0} will be
      * returned.
      * <p>
      * <p>If {@link #listen(int)} has been called with the port {@code 0}, this will

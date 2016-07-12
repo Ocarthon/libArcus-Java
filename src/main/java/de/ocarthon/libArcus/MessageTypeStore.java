@@ -58,6 +58,16 @@ class MessageTypeStore {
     }
 
     /**
+     * Converts the typename into a hash
+     *
+     * @param messageTypeName typename that gets hashed
+     * @return hash of the typename
+     */
+    public int getMessageTypeId(String messageTypeName) {
+        return hash(messageTypeName);
+    }
+
+    /**
      * Converts the full typename of this the given message into a hash
      *
      * @param message message whose typename gets hashed
