@@ -12,7 +12,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">libArcus-Java</h1>
-      <h2 class="project-tagline"></h2>
+      <h2 class="project-tagline">libArcus Java Ultimaker CuraEngine</h2>
       <a href="https://github.com/Ocarthon/libArcus-Java" class="btn">View on GitHub</a>
       <a href="https://github.com/Ocarthon/libArcus-Java/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/Ocarthon/libArcus-Java/tarball/master" class="btn">Download .tar.gz</a>
@@ -36,7 +36,7 @@ socket<span class="pl-k">.</span>registerMessageType(<span class="pl-smi">MyType
 <span class="pl-c">// Start listening on the specified port</span>
 socket<span class="pl-k">.</span>listen(<span class="pl-c1">...</span>);
 
-<span class="pl-c">// Send a messages</span>
+<span class="pl-c">// Send a message</span>
 socket<span class="pl-k">.</span>sendMessage(<span class="pl-c1">...</span>);
 
 <span class="pl-c">// Retrieve a received message</span>
@@ -49,6 +49,17 @@ socket<span class="pl-k">.</span>sendMessage(<span class="pl-c1">...</span>);
 
 <span class="pl-c">// Close the connection</span>
 socket<span class="pl-k">.</span>close();</pre></div>
+
+<h2>
+<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven</h2>
+
+<p>libArcus-Java has been published on Maven Central and you can add it to your pom.xml as a dependency.</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+  &lt;<span class="pl-ent">groupId</span>&gt;de.ocarthon&lt;/<span class="pl-ent">groupId</span>&gt;
+  &lt;<span class="pl-ent">artifactId</span>&gt;libArcus&lt;/<span class="pl-ent">artifactId</span>&gt;
+  &lt;<span class="pl-ent">version</span>&gt;1.0&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
 
 <p>More detailed information on how the library works and how to use it can be found in the <a href="https://ocarthon.github.io/libArcus-Java/docs/">Documentation</a></p>
 
