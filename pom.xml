@@ -23,7 +23,7 @@
 
     <groupId>de.ocarthon</groupId>
     <artifactId>libArcus</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>libArcus-Java</name>
