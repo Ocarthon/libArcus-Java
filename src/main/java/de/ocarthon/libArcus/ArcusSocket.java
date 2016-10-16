@@ -160,9 +160,14 @@ public class ArcusSocket {
     private String address;
 
     /**
-     * Port the sockets connects to or listens on
+     * Port the socket connects to or listens on
      */
     private int port;
+
+    /**
+     * Time until the socket times out while connecting, reading or writing
+     */
+    private int socketTimeout = 1000;
 
     /**
      * The actual socket used for communication
@@ -210,6 +215,29 @@ public class ArcusSocket {
         }
 
         return messageTypeStore.registerType(message);
+    }
+
+    /**
+     * Returns the time until the socket times out while connecting, reading or writing.
+     *
+     * @return time in ms
+     */
+    public int getSocketTimeout() {
+        return socketTimeout;
+    }
+
+    /**
+     * Sets the time until the socket times out while connecting, reading or writing. This
+     * can only be set when the socket is in it's initial state.
+     *
+     * @param socketTimeout time in ms
+     */
+    public void setSocketTimeout(int socketTimeout) {
+        if (state != SocketState.Initial) {
+            error(Error.ErrorCode.InvalidStateError, "Socket is not in initial state");
+        }
+
+        this.socketTimeout = socketTimeout;
     }
 
     /**
@@ -610,7 +638,7 @@ public class ArcusSocket {
                         // can at max take 250ms before returning. This the thread does not
                         // get blocked.
                         try {
-                            socket.setSoTimeout(250);
+                            socket.setSoTimeout(ArcusSocket.this.socketTimeout);
                         } catch (SocketException e) {
                             fatalError(Error.ErrorCode.ConnectFailedError, "Failed to set socket receive timeout");
                             continue;
@@ -633,7 +661,7 @@ public class ArcusSocket {
                         // Set timeout time for ServerSocket. That's needed to stop the thread
                         // if no client has connected.
                         try {
-                            serverSocket.setSoTimeout(250);
+                            serverSocket.setSoTimeout(ArcusSocket.this.socketTimeout);
                         } catch (SocketException e) {
                             fatalError(Error.ErrorCode.ConnectFailedError, "Failed to set socket receive timeout");
                             continue;
@@ -657,7 +685,7 @@ public class ArcusSocket {
 
                         // See above
                         try {
-                            socket.setSoTimeout(250);
+                            socket.setSoTimeout(ArcusSocket.this.socketTimeout);
                         } catch (SocketException e) {
                             fatalError(Error.ErrorCode.AcceptFailedError, "Failed to set socket receive timeout");
                             continue;
@@ -811,6 +839,7 @@ public class ArcusSocket {
                 }
                 if (Arrays.equals(header, KEEP_ALIVE)) {
                     // Just a keep-alive message
+                    currentOffset = 0;
                     return;
                 } else if (Arrays.equals(header, SOCKET_CLOSE)) {
                     // The other side wants to close the connection
@@ -972,7 +1001,7 @@ public class ArcusSocket {
             try {
                 return off + in.read(data, off, data.length - off);
             } catch (IOException e) {
-                fatalError(Error.ErrorCode.UnknownError, "Error while reading from socket");
+                fatalError(Error.ErrorCode.UnknownError, "Error while reading from socket (" + e.getMessage() + ")");
                 return -1;
             }
         }
