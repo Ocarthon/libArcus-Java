@@ -517,11 +517,14 @@ public class ArcusSocket {
             try {
                 // Stop Socket and (if created) ServerSocket. The thread will
                 // automatically stop after the next iteration
-                socket.close();
+                if (socket != null) {
+                    socket.close();
+                }
+
                 if (serverSocket != null) {
                     serverSocket.close();
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 // Ignore, at this point it does not matter
             }
         }
