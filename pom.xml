@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~   Copyright (C) 2016  Philip Standt
+  ~ Copyright (C) 2017  Philip Standt
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU Affero General Public License as published
@@ -23,7 +23,7 @@
 
     <groupId>de.ocarthon</groupId>
     <artifactId>libArcus</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>libArcus-Java</name>
