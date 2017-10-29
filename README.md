@@ -37,7 +37,7 @@ libArcus-Java has been published on Maven Central and you can add it to your pom
 <dependency>
   <groupId>de.ocarthon</groupId>
   <artifactId>libArcus</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
